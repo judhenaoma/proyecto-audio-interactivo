@@ -1,4 +1,6 @@
 
+// p5.soundOut.set({ sampleRate: 44100, bufferSize: 2048 });
+
 // Rain
 let drops = [];
 //Fires
@@ -26,13 +28,20 @@ let thunderSong;
 let wavesSong;
 
 
-function setup() {
+function preload () {
+  rainSong = loadSound('sounds/light-rain-ambient.mp3');
+  fireSong = loadSound('sounds/bonfire.mp3');
+  thunderSong = loadSound('sounds/thunder-sound.mp3');
+  wavesSong = loadSound('sounds/ocean-waves.mp3');
+}	
 
+function setup() {
+      noFill();
       // load sound files
-      rainSong = loadSound('sounds/heavy-rain.mp3');
-      fireSong = loadSound('sounds/bonfire.mp3');
-      thunderSong = loadSound('sounds/thunder-sound.mp3');
-      wavesSong = loadSound('sounds/sea-waves.mp3');
+      // rainSong = loadSound('sounds/heavy-rain.mp3');
+      // fireSong = loadSound('sounds/bonfire.mp3');
+      // thunderSong = loadSound('sounds/thunder-sound.mp3');
+      // wavesSong = loadSound('sounds/sea-waves.mp3');
 
       // make main animation container
       createCanvas(1270, 594);
@@ -122,6 +131,7 @@ function setup() {
       if(fireOn){
         fireSong.loop();
         fireSong.play();
+        fireSong.setVolume(1);
         fireButton.classList.add('button_clicked')
       }else{
         fireSong.stop();
@@ -134,10 +144,10 @@ function setup() {
     const wavesButton = document.querySelector('#waves_button');
     wavesButton.addEventListener('click', () => {
       wavesOn = !wavesOn;
-
       if(wavesOn){
         wavesSong.loop();
         wavesSong.play();
+        wavesSong.amp(0.2)
         wavesButton.classList.add('button_clicked')
       }else{
         wavesSong.stop();
