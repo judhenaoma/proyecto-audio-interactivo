@@ -28,6 +28,7 @@ let thunderSong;
 let wavesSong;
 
 
+//Function to load the audios before the setup
 function preload () {
   rainSong = loadSound('sounds/light-rain-ambient.mp3');
   fireSong = loadSound('sounds/bonfire.mp3');
@@ -36,15 +37,10 @@ function preload () {
 }	
 
 function setup() {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
       noFill();
-      // load sound files
-      // rainSong = loadSound('sounds/heavy-rain.mp3');
-      // fireSong = loadSound('sounds/bonfire.mp3');
-      // thunderSong = loadSound('sounds/thunder-sound.mp3');
-      // wavesSong = loadSound('sounds/sea-waves.mp3');
-
-      // make main animation container
-      createCanvas(1270, 594);
+      createCanvas(screenWidth, screenHeight);
 
       //Rain button
       rain_ = createButton('Rain');
@@ -235,7 +231,7 @@ class Drop {
   constructor() {
     this.x = random(-width, 0);
     this.y = random(-height, 0);
-    this.speed = random(2, 10);
+    this.speed = random(5, 15);
   }
 
   fall() {
